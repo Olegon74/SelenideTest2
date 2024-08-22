@@ -10,14 +10,11 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    //maven {
-    //  url "https://docs.gradle.org/current/userguide/declaring_repositories.html"
-    //}
 
 }
 
-def allureVersion = "2.20.1",
-    slf4jVersion = "1.7.32"
+def allureVersion = "2.20.1"
+    //slf4jVersion = "2.0.9"
 
 allure {
     report {
@@ -45,8 +42,7 @@ dependencies {
             'io.qameta.allure:allure-java-commons:2.20.1',
             'org.aspectj:aspectjweaver:1.9.21',
             'io.github.bonigarcia:webdrivermanager:5.7.0',
-            'io.rest-assured:rest-assured:5.4.0',
-            'org.aeonbits.owner:owner:1.0.12',
+            'org.slf4j:slf4j-simple:2.0.9',
             'org.assertj:assertj-core:3.24.2',)
 }
 test {
@@ -55,7 +51,7 @@ test {
 
 task simple_test(type: Test) {
     useJUnitPlatform {
-        includeTags("config")
+        includeTags("simple")
     }
 }
 
