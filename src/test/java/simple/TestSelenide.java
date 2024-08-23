@@ -2,6 +2,7 @@ package simple;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import hellper.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -119,7 +120,14 @@ public class TestSelenide {
 
     @AfterEach
     void tearDown() {
-        closeWebDriver(); // Закрываем браузер после каждого теста
+        closeWebDriver();
+        // Закрываем браузер после каждого теста
+    }
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 
 }
