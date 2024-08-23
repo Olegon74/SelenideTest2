@@ -1,9 +1,6 @@
 package simple;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,22 +8,24 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 @Tag("simple")
 public class TestSelenide {
     private WebDriver driver;
-    private static final String BASE_URL = "https://qa-mesto.praktikum-services.ru/";
-
 
     @BeforeEach
-    void setUp() {
+    void beforeAll() {
+        baseUrl = "https://qa-mesto.praktikum-services.ru/";
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "126";
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 8000; // Увеличение таймаута
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         //WebDriverManager.chromedriver().setup();
-        SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.timeout = 8000; // Увеличение таймаута
-        open(BASE_URL);
+        //SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -35,8 +34,9 @@ public class TestSelenide {
         ));
 
         Configuration.browserCapabilities = capabilities;
-
+        open(baseUrl);
     }
+
 
     @Test
     public void openPage() {
