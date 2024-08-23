@@ -3,6 +3,7 @@ package simple;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import hellper.Attach;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-@Tag("remote")
+//@Tag("remote")
 public class TestSelenide {
     private WebDriver driver;
 
@@ -118,18 +119,24 @@ public class TestSelenide {
 
     }
 
-    @AfterEach
-    void tearDown() {
-        closeWebDriver();
-        // Закрываем браузер после каждого теста
-    }
+    /*@AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+    }*/
+    @AfterEach
+    void tearDown() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();// Закрываем браузер после каждого теста
+        closeWebDriver();
     }
 
 }
+
+
 
 

@@ -2,6 +2,7 @@ package hellper;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.selenide.LogType;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -32,7 +33,7 @@ public class Attach {
     public static void browserConsoleLogs() {
         attachAsText(
                 "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(String.valueOf(BROWSER)))
+                String.join("\n", Selenide.getWebDriverLogs(LogType.BROWSER.toString()))
         );
     }
 
