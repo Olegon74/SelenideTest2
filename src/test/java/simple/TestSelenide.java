@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-@Tag("simple")
+@Tag("remote")
 public class TestSelenide {
     private WebDriver driver;
 
