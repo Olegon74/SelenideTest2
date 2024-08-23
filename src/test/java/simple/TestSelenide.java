@@ -1,6 +1,8 @@
 package simple;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,15 +19,15 @@ public class TestSelenide {
     private WebDriver driver;
 
     @BeforeEach
-    void beforeAll() {
+    void setUp() {
         baseUrl = "https://qa-mesto.praktikum-services.ru/";
         Configuration.browser = "chrome";
         Configuration.browserVersion = "126";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 8000; // Увеличение таймаута
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        SelenideLogger.addListener("allure", new AllureSelenide());
         //WebDriverManager.chromedriver().setup();
-        //SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
