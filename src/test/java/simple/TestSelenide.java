@@ -23,21 +23,21 @@ public class TestSelenide {
     @BeforeEach
     void setUp() {
         baseUrl = "https://qa-mesto.praktikum-services.ru/";
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "126";
-        Configuration.browserSize = "1920x1080";
+        //Configuration.browser = "chrome";
+        //Configuration.browserVersion = "126";
+        //Configuration.browserSize = "1920x1080";
         Configuration.timeout = 8000; // Увеличение таймаута
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
-        //WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        /*DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
                 "enableVideo", true
         ));
 
-        Configuration.browserCapabilities = capabilities;
+        Configuration.browserCapabilities = capabilities;*/
         open(baseUrl);
     }
 
@@ -119,19 +119,12 @@ public class TestSelenide {
 
     }
 
-    /*@AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-    }*/
     @AfterEach
     void tearDown() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();// Закрываем браузер после каждого теста
+        //Attach.addVideo();// Закрываем браузер после каждого теста
         closeWebDriver();
     }
 
