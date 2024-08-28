@@ -16,28 +16,28 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-//@Tag("remote")
+@Tag("remote")
 public class TestSelenide {
     private WebDriver driver;
 
     @BeforeEach
     void setUp() {
         baseUrl = "https://qa-mesto.praktikum-services.ru/";
-        //Configuration.browser = "chrome";
-        //Configuration.browserVersion = "126";
-        //Configuration.browserSize = "1920x1080";
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "126";
+        Configuration.browserSize = "1920x1080";
         Configuration.timeout = 8000; // Увеличение таймаута
-        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
 
-        /*DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
                 "enableVideo", true
         ));
 
-        Configuration.browserCapabilities = capabilities;*/
+        Configuration.browserCapabilities = capabilities;
         open(baseUrl);
     }
 
