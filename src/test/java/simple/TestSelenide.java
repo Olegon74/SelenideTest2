@@ -18,14 +18,19 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 @Tag("remote")
 public class TestSelenide {
-    private WebDriver driver;
+
+    @BeforeAll
+    static void beforeAll() {
+        Configuration.baseUrl = "https://qa-mesto.praktikum-services.ru/";
+        Configuration.browserSize = "1920x1080";
+    }
+
+
 
     @BeforeEach
     void setUp() {
-        baseUrl = "https://qa-mesto.praktikum-services.ru/";
         Configuration.browser = "chrome";
         Configuration.browserVersion = "126";
-        Configuration.browserSize = "1920x1080";
         Configuration.timeout = 8000; // Увеличение таймаута
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -124,8 +129,8 @@ public class TestSelenide {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        //Attach.addVideo();// Закрываем браузер после каждого теста
-        closeWebDriver();
+        //Attach.addVideo();
+        closeWebDriver(); // Закрываем браузер после каждого теста
     }
 
 }

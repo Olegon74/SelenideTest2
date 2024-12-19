@@ -30,6 +30,10 @@ allure {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 
 dependencies {
     testImplementation(
@@ -45,6 +49,19 @@ dependencies {
             'org.slf4j:slf4j-simple:2.0.9',
             'org.assertj:assertj-core:3.24.2',)
 }
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
 }
