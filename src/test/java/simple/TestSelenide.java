@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-@Tag("remote")
+
 public class TestSelenide {
 
     @BeforeAll
@@ -46,7 +46,7 @@ public class TestSelenide {
         open(baseUrl);
     }
 
-
+    @Tag("remote")
     @Test
     public void openPage() {
 
@@ -64,6 +64,7 @@ public class TestSelenide {
         });
 
     }
+    @Tag("remote")
     @Test
     public void textLogoutTest() {
         String buttonText = $(byXpath(".//button[@class='auth-form__button']")).shouldBe(editable).getText();
@@ -81,6 +82,7 @@ public class TestSelenide {
         System.out.println(cardsQuantity);
 
     }
+    @Tag("remote")
     @Test
     public void testAvatar() {
         $(byId("email")).shouldBe(editable).setValue("user@example.com");
@@ -91,6 +93,7 @@ public class TestSelenide {
         $(byXpath(".//form[@name='edit-avatar']/button[text()='Сохранить']")).click();
 
     }
+    @Tag("simple")
     @Test
     public void testNewCard() {
         $(byId("email")).shouldBe(editable).setValue("user@example.com");
@@ -103,6 +106,7 @@ public class TestSelenide {
         $(byXpath(".//button[@class='card__delete-button card__delete-button_visible']")).click();
 
     }
+    @Tag("simple")
     @Test
     public void testEditingProfile() {
         $(byId("email")).shouldBe(editable).setValue("user@example.com");
@@ -114,6 +118,7 @@ public class TestSelenide {
         $(byXpath(".//form[@name='edit']/button[text()='Сохранить']")).shouldBe(editable).click();
 
     }
+    @Tag("simple")
     @Test
     public void cardTest() {
         $(byId("email")).shouldBe(editable).setValue("user@example.com");
